@@ -5,6 +5,8 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/Oefeningen/Week 1/Cirkel/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Oefeningen/Week 1/Cirkel/tests" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/Oefeningen/Week 1/Cirkel/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/Oefeningen/Week 1/Cirkel/out" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
