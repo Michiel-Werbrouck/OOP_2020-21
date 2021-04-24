@@ -1,10 +1,14 @@
 package db;
 
+import domain.ComperatorByCategorie;
+import domain.ComperatorById;
 import domain.Opdracht;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class OpdrachtDatabank {
@@ -42,6 +46,8 @@ public class OpdrachtDatabank {
         }
     }
 
+
+
     public void voegToe(Opdracht opdracht) {
         if (opdracht == null || this.opdrachten.contains(opdracht))
             throw new IllegalArgumentException("Opdracht kan niet leeg zijn.");
@@ -50,6 +56,17 @@ public class OpdrachtDatabank {
     }
 
     public ArrayList<Opdracht> getOpdrachten() {
+        return this.opdrachten;
+    }
+
+    public ArrayList<Opdracht> getOpdrachtenGesorteerdOpCategorie() {
+        this.opdrachten.sort(new ComperatorByCategorie());
+        return this.opdrachten;
+    }
+
+    public ArrayList<Opdracht> getOpdrachtenGesorteerdOpCategorieEnId() {
+        this.opdrachten.sort(new ComperatorByCategorie());
+        this.opdrachten.sort(new ComperatorById());
         return this.opdrachten;
     }
 }
