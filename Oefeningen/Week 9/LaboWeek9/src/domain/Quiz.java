@@ -1,49 +1,49 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 public class Quiz {
-	
-	// TODO Vervang door een een gepaste collectie en initialiseer ze
-	private Object opdrachten;
+
+	private final ArrayList<Opdracht> opdrachten;
 		
 	public Quiz(){		
-		// TODO
+		this.opdrachten = new ArrayList<>();
 	}
-	
-	// hoeveel opdracht objecten zitten er in de opdrachtenCollectie
+
 	public int getAantalOpdrachten(){
-		// TODO
-		return 0;
+		return opdrachten.size();
 	}
 		
 	public boolean isLeeg(){
-		// TODO
-		return true;
-	}
-		
-		
-	//voegt een nieuwe opdracht toe achteraan de opdrachtenCollectie
-	// let op opdracht mag niet al voorkomen volgens equals
-	
-	public boolean voegOpdrachtToe(Opdracht opdrachtNieuw){
-		// TODO
-		return true;
-	}
-	
-		
-	// TODO verwijder de eventuele opdracht op met opdrachtId in de opdrachtenCollectie
-	//geeft de verwijderde opdracht terug TIP: gebruik iterator
-	public Opdracht verwijderOpdracht(int opdrachtId) {
-		return null;
+		return opdrachten.isEmpty();
 	}
 
-	//TODO geeft willekeurige opdracht terug	
-	public Opdracht getRandomOpdracht(){
- 		return null;
+	public boolean voegOpdrachtToe(Opdracht opdrachtNieuw){
+		if (opdrachtNieuw == null || opdrachten.contains(opdrachtNieuw))
+			return false;
+
+		opdrachten.add(opdrachtNieuw);
+		return true;
 	}
-		
-	// TODO elke opdracht uit de opdrachtenCollectie(volgens toString van Opdracht klasse), elke
-	//opdracht op een nieuwe lijn
+
+	public Opdracht verwijderOpdracht(int opdrachtId) {
+		Opdracht opdracht = opdrachten.get(opdrachtId);
+		opdrachten.remove(opdracht);
+		return opdracht;
+	}
+
+	public Opdracht getRandomOpdracht(){
+		return opdrachten.get(new Random().nextInt(opdrachten.size() - 1));
+	}
+
+	@Override
 	public String toString(){
-		return null;
+		StringBuilder stringBuilder = new StringBuilder("Opdrachten\n");
+
+		for (Opdracht opdracht : opdrachten)
+			stringBuilder.append(opdracht.toString()).append("\n");
+
+		return stringBuilder.toString();
 	}
 }

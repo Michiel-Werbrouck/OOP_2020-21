@@ -1,12 +1,17 @@
 package ui;
 
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
-import domain.Opdracht;
+import db.OpdrachtDatabank;
+import domain.*;
+
+import java.util.Scanner;
 
 public class OpdrachtUI {
 
 	public static void main(String[] args) {
+		JFrame f = new JFrame();
+
 		// We maken 1 opdracht
 		int id = 1;
 		String auteur = "Leentje";
@@ -19,16 +24,29 @@ public class OpdrachtUI {
 				isHoofdlettergevoelig, antwoordhint, categorie, auteur);
 		System.out.println(opdracht1);
 
-		// TODO gebruik de OpdrachtDatabase klasse  om opdrachten van een txt
 		// bestand te lezenen en hier een Quiz van te maken
-		
-		
-		// TODO schrijf de main methode verder uit zodat volgende gebeurt
-		// Kies een willekeurige opdracht en toon de vraag aan de gebruiker in de console, 
-		// waarbij hij een antwoord kan geven in de console dat gecontroleerd wordt met het juiste antwoord.
-		// bij foutieve antwoord van de gebruiker kan de hint gegeven worden
-		// zie forum --> discussielijn met de naam "JOptionPane" van Greetje Jongen voor inlezen console
+		OpdrachtDatabank db = new OpdrachtDatabank("Opdrachten-1.txt");
+		Quiz quiz = new Quiz();
 
+		for (Opdracht opdracht : db.getOpdrachten())
+			quiz.voegOpdrachtToe(opdracht);
+
+		System.out.println(quiz);
+
+		// Kies een willekeurige opdracht en toon de vraag aan de gebruiker in de console,
+		Opdracht opdracht = quiz.getRandomOpdracht();
+		System.out.println(opdracht.getVraag());
+
+		// waarbij hij een antwoord kan geven in de console dat gecontroleerd wordt met het juiste antwoord.
+		Scanner in = new Scanner(System.in);
+		String inAntwoord = in.nextLine();
+
+		// bij foutieve antwoord van de gebruiker kan de hint gegeven worden
+		if (opdracht.getAntwoord().equals(inAntwoord)) {
+			JOptionPane.showMessageDialog(f,"Juist");
+		} else {
+			JOptionPane.showMessageDialog(f,"Fout, hint: " + opdracht.getAntwoordHint());
+		}
 	}
 
 }
