@@ -61,7 +61,7 @@ public class Adresboek {
 	public Adresboek gezamelijkeContacten(Adresboek teVergelijken) {
 		Set<Contact> contacten = new TreeSet<>(this.contacten);
 		contacten.addAll(teVergelijken.getContacten());
-		return new Adresboek(contactenCopy);
+		return new Adresboek(contacten);
 	}
 	
 	/**
@@ -74,7 +74,7 @@ public class Adresboek {
 	public Adresboek verschillendeContacten (Adresboek teVergelijken){
 		Set<Contact> contacten = new TreeSet<>(this.contacten);
 		contacten.removeAll(teVergelijken.getContacten());
-		return new Adresboek(contactenCopy);
+		return new Adresboek(contacten);
 	}
 
 	/**

@@ -102,11 +102,11 @@ public class Contact implements Comparable<Contact>  {
 	@Override
 	public int compareTo(Contact o) {
 		int terug = 0;
-		terug = this.getAchternaam().compareTo(contact.getAchternaam());
+		terug = this.getAchternaam().compareTo(o.getAchternaam());
 		if (terug == 0)
-			terug = this.getVoornaam().compareTo(contact.getVoornaam());
+			terug = this.getVoornaam().compareTo(o.getVoornaam());
 		if (terug == 0)
-			terug = this.getTel().compareTo(contact.getTel());
+			terug = this.getTel().compareTo(o.getTel());
 		return terug;
 	}
 }
